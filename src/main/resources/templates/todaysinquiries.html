@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shri Sai Auto</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Shri Sai Auto</a>
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/find/all}">Customer Enquiries</a></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/todays/inquiries}">Today's Enquiries</a></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/vehicle/model}">Vehicle Model's</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Today's Enquiries</h1>
+			</div>
+			<div class="col col-lg-1" style="margin-top: 1%;">
+				<a th:href="@{/customer/create/enquiry}" class="btn btn-primary">Add</a>
+			</div>
+		</div>
+		<br>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col" style="text-align: center;">Sr No.</th>
+					<th scope="col">Name</th>
+					<th scope="col">Contact No.1</th>
+					<th scope="col">Contact No.2</th>
+					<th scope="col">Email</th>
+					<th scope="col">Address</th>
+					<th scope="col">Interested Model</th>
+					<th scope="col">Reference By</th>
+					<th scope="col" style="text-align: center;">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="enquiry,iterator: ${todaysinquiries}">
+					<td style="text-align: center;" th:text="${iterator.index+1}"></td>
+					<td th:text="${enquiry.firstName}"></td>
+					<td th:text="${enquiry.mobile1}"></td>
+					<td th:text="${enquiry.mobile2}"></td>
+					<td th:text="${enquiry.email1}"></td>
+					<td th:text="${enquiry.address}"></td>
+					<td th:text="${enquiry.interestedModel}"></td>
+					<td th:text="${enquiry.referenceBy}"></td>
+					<td>
+						<a th:href="@{/customer/update/enquiry/{inquiryId}(inquiryId=${enquiry.inquiryId})}">Update</a>
+						&nbsp; 
+						<a th:href="@{/customer/update/enquiry/{inquiryId}(inquiryId=${enquiry.inquiryId})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
