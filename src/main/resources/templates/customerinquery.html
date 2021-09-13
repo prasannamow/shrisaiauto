@@ -64,7 +64,18 @@
 			<tbody>
 				<tr th:each="enquiry,iterator: ${enquries}">
 					<td th:text="${iterator.index+1}" style="text-align: center;"></td>
-					<td th:text="${enquiry.firstName}"></td>
+					<td th:if="${enquiry.firstName != null} and ${enquiry.lastName!= null}">
+					 	<span th:text="${enquiry.firstName}+ ' ' + ${enquiry.lastName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName != null} and ${enquiry.lastName == null}">
+					 	<span th:text="${enquiry.firstName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName == null} and ${enquiry.lastName!= null}">
+					 	<span th:text="${enquiry.lastName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName == null} and ${enquiry.lastName == null}">
+					 	<span th:text="N/A"></span>
+					</td>
 					<td th:text="${enquiry.inquiryDate}"></td>
 					<td th:text="${enquiry.mobile1}"></td>
 					<td th:text="${enquiry.mobile2}"></td>

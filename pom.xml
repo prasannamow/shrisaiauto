@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-	<packaging>war</packaging>
+<!-- 	<packaging>war</packaging> -->
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
 		<dependency>
@@ -81,11 +81,11 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<finalName>${artifactId}</finalName>
