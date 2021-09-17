@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +30,15 @@ public class CustomerEnquiryController {
 	@Autowired
 	private CustomerEnquiryService customerEnquiryService;
 
-	@GetMapping("/find/all")
-	public String findAllCustomerEnquiriesForm(Model model) {
-		model.addAttribute("enquries", customerEnquiryService.findAllEnquiries());
+	@GetMapping("/find/all/page/{pageNo}")
+	public String findAllCustomerEnquiriesForm(@PathVariable(value = "pageNo") int pageNo, Model model) {
+		int pageSize = 7;
+		Page<CustomerEnquiry> page = customerEnquiryService.findAllPaginatedEnquiries(pageNo, pageSize);
+		List<CustomerEnquiry> listCustomerEnquiry = page.getContent();
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("enquries", listCustomerEnquiry);
 		return "customerinquery";
 	}
 
@@ -85,7 +92,7 @@ public class CustomerEnquiryController {
 		String inquiryDate = getCurrentTimeUsingDate();
 		existingEnquiry.setInquiryDate(inquiryDate);
 		customerEnquiryService.updateEnquiry(existingEnquiry);
-		return "redirect:/customer/find/all";
+		return "redirect:/customer/find/all/page/1";
 	}
 
 	private String getCurrentTimeUsingDate() {

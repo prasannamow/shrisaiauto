@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -60,9 +61,22 @@ public class ExcelFileExporter {
 
 			// Creating data rows for each customer
 			for (int i = 0; i < customers.size(); i++) {
+				String firstName = null;
+				String lastName = null;
 				Row dataRow = sheet.createRow(i + 1);
-				dataRow.createCell(0).setCellValue(
-						customers.get(i).getFirstName().concat(" ").concat(customers.get(i).getLastName()));
+				if (Objects.nonNull(customers.get(i).getFirstName()) && Objects.nonNull(customers.get(i).getLastName())) {
+					firstName = customers.get(i).getFirstName().toUpperCase();
+					lastName = customers.get(i).getLastName().toUpperCase();
+					dataRow.createCell(0).setCellValue(firstName.concat(" ").concat(lastName));
+				} else if (Objects.nonNull(customers.get(i).getFirstName()) && Objects.isNull(customers.get(i).getLastName())){
+					firstName = customers.get(i).getFirstName().toUpperCase();
+					dataRow.createCell(0).setCellValue(firstName.concat(" "));
+				} else if(Objects.isNull(customers.get(i).getFirstName()) && Objects.nonNull(customers.get(i).getLastName())){
+					lastName = customers.get(i).getLastName().toUpperCase();
+					dataRow.createCell(0).setCellValue(lastName);
+				} else {
+					dataRow.createCell(0).setCellValue("N/A");
+				}
 				dataRow.createCell(1).setCellValue(customers.get(i).getInquiryDate());
 				dataRow.createCell(2).setCellValue(customers.get(i).getMobile1());
 				dataRow.createCell(3).setCellValue(customers.get(i).getMobile2());

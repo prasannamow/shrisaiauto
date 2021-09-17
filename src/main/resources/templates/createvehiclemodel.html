@@ -14,23 +14,19 @@
 		<!-- Brand -->
 		<a class="navbar-brand" href="#">Shri Sai Auto</a>
 		<!-- Toggler/collapsibe Button -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<!-- Navbar links -->
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					th:href="@{/customer/find/all}">Customer Enquiries</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/customer/find/all/page/1}">Customer Enquiries</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					th:href="@{/customer/todays/inquiries}">Today's Enquiries</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/customer/todays/inquiries}">Today's Enquiries</a></li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					th:href="@{/vehicle/model}">Vehicle Model's</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/vehicle/model}">Vehicle Model's</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -44,15 +40,45 @@
 						<div class="form-group">
 							<label>Model Name</label> 
 							<input type="text" class="form-control" id="modelName" name="modelName" th:field="*{modelName}"
-								aria-describedby="emailHelp" placeholder="Enter Model Name">
+								required="required" aria-describedby="emailHelp" placeholder="Enter Model Name">
 						</div>
 						<div class="form-group">
-							<label>Model Description</label> 
-								<input type="text" class="form-control" name="modelDesc" th:field="*{modelDesc}" id="modelDesc"
-								aria-describedby="emailHelp" placeholder="Enter Model Description">
+							<label>Speed</label>
+							<input type="text" class="form-control" id="speed" name="speed" th:field="*{speed}" 
+								aria-describedby="emailHelp" placeholder="Enter Speed">
+						</div>
+						<div class="form-group">
+							<label>Range</label>
+							<input type="text" class="form-control" id="range" name="range" th:field="*{range}"
+								aria-describedby="emailHelp" placeholder="Enter Range">
+						</div>
+						<div class="form-group">
+							<label>Charging Time</label>
+							<input type="text" class="form-control" id="chargingTime" name="chargingTime" th:field="*{chargingTime}"
+								aria-describedby="emailHelp" placeholder="Enter Charging Time">
+						</div>
+						<div class="form-group">
+							<label>Payload</label>
+							<input type="text" class="form-control" id="payload" name="payload" th:field="*{payload}"
+								aria-describedby="emailHelp" placeholder="Enter Payload">
+						</div>
+						<div class="form-group">
+							<label>Battery Size</label>
+							<input type="text" class="form-control" id="batterySize" name="batterySize" th:field="*{batterySize}" 
+								aria-describedby="emailHelp" placeholder="Enter Battery Size">
+						</div>
+						<div class="form-group">
+							<label>Motor Capacity</label>
+							<input type="text" class="form-control" id="motorCapacity" name="motorCapacity"
+								th:field="*{motorCapacity}" aria-describedby="emailHelp" placeholder="Enter Motor Capacity">
+						</div>
+						<div class="form-group">
+							<label>Price</label>
+							<input type="text" class="form-control" id="price" name="price"
+								th:field="*{price}" aria-describedby="emailHelp" placeholder="Enter Price">
 						</div>
 						<div class="box-footer">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-dark">Submit</button>
 						</div>
 					</form>
 				</div>

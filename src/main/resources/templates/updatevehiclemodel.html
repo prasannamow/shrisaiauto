@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shri Sai Auto</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Shri Sai Auto</a>
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/find/all/page/1}">Customer Enquiries</a></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/todays/inquiries}">Today's Enquiries</a></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/vehicle/model}">Vehicle Model's</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center" style="margin-top: 2%;">Update Vehicle Model</h1>
+				<div class="card-body">
+					<form th:action="@{/vehicle/model/update/{modelId} (modelId=${updatevehiclemodel.modelId})}"
+						th:object="${updatevehiclemodel}" method="POST">
+						<div class="form-group">
+							<label>Model Name</label>
+							<input type="text" class="form-control" id="modelName" name="modelName" th:field="*{modelName}"
+								required="required" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label>Speed</label>
+							<input type="text" class="form-control" id="speed" name="speed" th:field="*{speed}" 
+								aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label>Range</label>
+							<input type="text" class="form-control" id="range" name="range" th:field="*{range}">
+						</div>
+						<div class="form-group">
+							<label>Charging Time</label>
+							<input type="text" class="form-control" id="chargingTime" name="chargingTime" th:field="*{chargingTime}">
+						</div>
+						<div class="form-group">
+							<label>Payload</label>
+							<input type="text" class="form-control" id="payload" name="payload" th:field="*{payload}"
+								aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label>Battery Size</label>
+							<input type="text" class="form-control" id="batterySize" name="batterySize" th:field="*{batterySize}" 
+								aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label>Motor Capacity</label>
+							<input type="text" class="form-control" id="motorCapacity" name="motorCapacity"
+								th:field="*{motorCapacity}" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label>Price</label>
+							<input type="text" class="form-control" id="price" name="price"
+								th:field="*{price}" aria-describedby="emailHelp">
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-dark">Update</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

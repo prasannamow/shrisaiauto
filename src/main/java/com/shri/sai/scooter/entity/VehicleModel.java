@@ -17,7 +17,7 @@ public class VehicleModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehicle_model_seq")
-	@SequenceGenerator(name = "vehicle_model_seq", sequenceName = "vehicle_model_seq", initialValue = 1, allocationSize = 1)
+	@SequenceGenerator(name = "vehicle_model_seq", sequenceName = "vehicle_model_seq", initialValue = 10, allocationSize = 1)
 	@Column(name = "model_id")
 	private Integer modelId;
 	@Column(name = "model_name")
@@ -26,5 +26,18 @@ public class VehicleModel {
 	private String modelDesc;
 	@Column(name = "is_active")
 	private Boolean isActive;
-
+	@Column(name = "speed")
+	private String speed;
+	@Column(name = "range")
+	private String range;
+	@Column(name = "charging_time")
+	private String chargingTime;
+	@Column(name = "payload")
+	private String payload;
+	@Column(name = "battery_size")
+	private String batterySize;
+	@Column(name = "motor_capacity")
+	private String motorCapacity;
+	@Column(name = "price")
+	private String price;
 }

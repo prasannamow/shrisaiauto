@@ -8,5 +8,12 @@ public interface VehicleModelService {
 
 	public List<VehicleModel> findAllVehicleModels();
 
+	public VehicleModel getVehicleModel(Integer modelId);
+
 	public VehicleModel addVehicleModel(VehicleModel vehicleModel);
+
+	public VehicleModel updateVehicleModel(VehicleModel vehicleModel);
+	
+	public Integer findAllModelIdsOrderByDesc();
+
 }

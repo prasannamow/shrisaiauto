@@ -21,7 +21,7 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
-					th:href="@{/customer/find/all}">Customer Enquiries</a></li>
+					th:href="@{/customer/find/all/page/1}">Customer Enquiries</a></li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link"
@@ -61,7 +61,18 @@
 			<tbody>
 				<tr th:each="enquiry,iterator: ${todaysinquiries}">
 					<td style="text-align: center;" th:text="${iterator.index+1}"></td>
-					<td th:text="${enquiry.firstName}"></td>
+					<td th:if="${enquiry.firstName != null} and ${enquiry.lastName!= null}">
+					 	<span th:text="${enquiry.firstName}+ ' ' + ${enquiry.lastName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName != null} and ${enquiry.lastName == null}">
+					 	<span th:text="${enquiry.firstName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName == null} and ${enquiry.lastName!= null}">
+					 	<span th:text="${enquiry.lastName}"></span>
+					</td>
+					<td th:if="${enquiry.firstName == null} and ${enquiry.lastName == null}">
+					 	<span th:text="N/A"></span>
+					</td>
 					<td th:text="${enquiry.mobile1}"></td>
 					<td th:text="${enquiry.mobile2}"></td>
 					<td th:text="${enquiry.email1}"></td>

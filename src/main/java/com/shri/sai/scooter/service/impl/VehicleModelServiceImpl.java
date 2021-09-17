@@ -25,4 +25,19 @@ public class VehicleModelServiceImpl implements VehicleModelService {
 		return vehicleModelRepository.save(vehicleModel);
 	}
 
+	@Override
+	public VehicleModel getVehicleModel(Integer modelId) {
+		return vehicleModelRepository.findByModelId(modelId);
+	}
+
+	@Override
+	public VehicleModel updateVehicleModel(VehicleModel vehicleModel) {
+		return vehicleModelRepository.save(vehicleModel);
+	}
+
+	@Override
+	public Integer findAllModelIdsOrderByDesc() {
+		return vehicleModelRepository.findAllModelIdsOrderByDesc();
+	}
+
 }
