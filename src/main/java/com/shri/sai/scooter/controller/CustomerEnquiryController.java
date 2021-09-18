@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.apache.commons.compress.utils.IOUtils;
+
 import com.shri.sai.scooter.entity.CustomerEnquiry;
 import com.shri.sai.scooter.exporter.ExcelFileExporter;
 import com.shri.sai.scooter.service.CustomerEnquiryService;
@@ -30,18 +30,24 @@ public class CustomerEnquiryController {
 	@Autowired
 	private CustomerEnquiryService customerEnquiryService;
 
-	@GetMapping("/find/all/page/{pageNo}")
-	public String findAllCustomerEnquiriesForm(@PathVariable(value = "pageNo") int pageNo, Model model) {
-		int pageSize = 7;
-		Page<CustomerEnquiry> page = customerEnquiryService.findAllPaginatedEnquiries(pageNo, pageSize);
-		List<CustomerEnquiry> listCustomerEnquiry = page.getContent();
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("enquries", listCustomerEnquiry);
+	@GetMapping("/find/all")
+	public String findAllCustomerEnquiriesForm(Model model) {
+		model.addAttribute("enquries", customerEnquiryService.findAllEnquiries());
 		return "customerinquery";
 	}
 
+//	@GetMapping("/find/all/page/{pageNo}")
+//	public String findAllCustomerEnquiriesForm(@PathVariable(value = "pageNo") int pageNo, Model model) {
+//		int pageSize = 7;
+//		Page<CustomerEnquiry> page = customerEnquiryService.findAllPaginatedEnquiries(pageNo, pageSize);
+//		List<CustomerEnquiry> listCustomerEnquiry = page.getContent();
+//		model.addAttribute("currentPage", pageNo);
+//		model.addAttribute("totalPages", page.getTotalPages());
+//		model.addAttribute("totalItems", page.getTotalElements());
+//		model.addAttribute("enquries", listCustomerEnquiry);
+//		return "customerinquery";
+//	}
+	
 	@GetMapping("/todays/inquiries")
 	public String findTodaysCustomerEnquiriesForm(Model model) {
 		model.addAttribute("todaysinquiries", customerEnquiryService.findAllTodaysEnquiries());
@@ -92,7 +98,7 @@ public class CustomerEnquiryController {
 		String inquiryDate = getCurrentTimeUsingDate();
 		existingEnquiry.setInquiryDate(inquiryDate);
 		customerEnquiryService.updateEnquiry(existingEnquiry);
-		return "redirect:/customer/find/all/page/1";
+		return "redirect:/customer/find/all";///page/1
 	}
 
 	private String getCurrentTimeUsingDate() {
