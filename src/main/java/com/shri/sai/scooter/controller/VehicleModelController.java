@@ -1,5 +1,9 @@
 package com.shri.sai.scooter.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +38,9 @@ public class VehicleModelController {
 
 	@PostMapping(value = "/model/save")
 	public String saveVehicleModelData(@ModelAttribute("createvehiclemodel") VehicleModel vehicleModel) {
+		String currentDate = getCurrentTimeUsingDate();
+		vehicleModel.setCreatedBy("admin");
+		vehicleModel.setCreatedDate(currentDate);
 		vehicleModelService.addVehicleModel(vehicleModel);
 		return "redirect:/vehicle/model";
 	}
@@ -47,6 +54,7 @@ public class VehicleModelController {
 	@PostMapping(value = "/model/update/{modelId}")
 	public String updateEnquiry(@PathVariable Integer modelId,
 			@ModelAttribute("updatevehiclemodel") VehicleModel updateVehicleModel, Model model) {
+		String updatedDate = getCurrentTimeUsingDate();
 		VehicleModel vehicleModel = vehicleModelService.getVehicleModel(modelId);
 		vehicleModel.setBatterySize(updateVehicleModel.getBatterySize());
 		vehicleModel.setChargingTime(updateVehicleModel.getChargingTime());
@@ -56,7 +64,18 @@ public class VehicleModelController {
 		vehicleModel.setPrice(updateVehicleModel.getPrice());
 		vehicleModel.setRange(updateVehicleModel.getRange());
 		vehicleModel.setSpeed(updateVehicleModel.getSpeed());
+		vehicleModel.setIsActive(true);
+		vehicleModel.setUpdatedBy("admin");
+		vehicleModel.setUpdatedDate(updatedDate);
 		vehicleModelService.updateVehicleModel(vehicleModel);
 		return "redirect:/vehicle/model";
+	}
+
+	private String getCurrentTimeUsingDate() {
+		Date date = new Date();
+		String strDateFormat = "dd-MM-yyyy";
+		DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+		String formattedDate = dateFormat.format(date);
+		return formattedDate;
 	}
 }

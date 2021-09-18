@@ -40,4 +40,12 @@ public class VehicleModel {
 	private String motorCapacity;
 	@Column(name = "price")
 	private String price;
+	@Column(name = "created_by")
+	private String createdBy;
+	@Column(name = "created_date")
+	private String createdDate;
+	@Column(name = "updated_by")
+	private String updatedBy;
+	@Column(name = "updated_date")
+	private String updatedDate;
 }
