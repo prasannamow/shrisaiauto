@@ -12,7 +12,10 @@ import com.shri.sai.scooter.entity.CustomerEnquiry;
 public interface CustomerEnquiryRepository extends PagingAndSortingRepository<CustomerEnquiry, Integer> {
 	public CustomerEnquiry findByInquiryId(Integer inquiryId);
 
-	public List<CustomerEnquiry> findByOrderByInquiryIdAsc();
+//	public List<CustomerEnquiry> findByOrderByInquiryIdAsc();
+	
+	@Query("SELECT CI FROM CustomerEnquiry CI WHERE CI.isActive = true order by TO_DATE(CI.inquiryDate, 'dd-MM-yyyy') DESC")
+	public List<CustomerEnquiry> findAllInquiries();
 
 	@Query("SELECT CI FROM CustomerEnquiry CI WHERE TO_DATE(CI.inquiryDate,'dd-MM-yyyy') >= CURRENT_DATE")
 	public List<CustomerEnquiry> findTodaysInquiries();

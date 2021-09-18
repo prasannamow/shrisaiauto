@@ -71,6 +71,8 @@ public class CustomerEnquiryController {
 	public String createNewEnquiry(@ModelAttribute("createinquiry") CustomerEnquiry customerEnquiry) {
 		String inquiryDate = getCurrentTimeUsingDate();
 		customerEnquiry.setInquiryDate(inquiryDate);
+		customerEnquiry.setCreatedBy("admin");
+		customerEnquiry.setCreatedDate(inquiryDate);
 		customerEnquiryService.createEnquiry(customerEnquiry);
 		return "redirect:/customer/find/all";
 	}
@@ -95,8 +97,9 @@ public class CustomerEnquiryController {
 		existingEnquiry.setEmail1(updateCustomerEnquiry.getEmail1());
 		existingEnquiry.setMobile1(updateCustomerEnquiry.getMobile1());
 		existingEnquiry.setInterestedModel(updateCustomerEnquiry.getInterestedModel());
+		existingEnquiry.setUpdatedBy("admin");
 		String inquiryDate = getCurrentTimeUsingDate();
-		existingEnquiry.setInquiryDate(inquiryDate);
+		existingEnquiry.setUpdatedDate(inquiryDate);
 		customerEnquiryService.updateEnquiry(existingEnquiry);
 		return "redirect:/customer/find/all";///page/1
 	}

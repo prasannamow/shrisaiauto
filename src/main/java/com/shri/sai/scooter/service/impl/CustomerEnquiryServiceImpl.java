@@ -25,7 +25,7 @@ public class CustomerEnquiryServiceImpl implements CustomerEnquiryService {
 
 	@Override
 	public List<CustomerEnquiry> findAllEnquiries() {
-		return (List<CustomerEnquiry>) customerEnquiryRepository.findByOrderByInquiryIdAsc();
+		return (List<CustomerEnquiry>) customerEnquiryRepository.findAllInquiries();
 	}
 
 	@Override

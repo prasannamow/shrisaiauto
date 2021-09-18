@@ -38,4 +38,15 @@ public class CustomerEnquiry {
 	private String referenceBy;
 	@Column(name = "interested_model")
 	private String interestedModel;
+	@Column(name = "created_by")
+	private String createdBy;
+	@Column(name = "created_date")
+	private String createdDate;
+	@Column(name = "updated_by")
+	private String updatedBy;
+	@Column(name = "updated_date")
+	private String updatedDate;
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
 }
